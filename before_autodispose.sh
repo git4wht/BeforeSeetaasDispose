@@ -23,13 +23,13 @@ echo $PASSWORD | sudo mkdir /home/seetaas/install
 echo $PASSWORD | sudo chown -R seetaas.seetaas /home/seetaas/install
 
 echo "begin install docker-ce:"
-echo $PASSWORD | sudo sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common vim git wget
+echo $PASSWORD | sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common vim git wget
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-echo $PASSWORD | sudo sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-echo $PASSWORD | sudo sudo apt-get update
-echo $PASSWORD | sudo sudo apt-get -y install docker-ce
+echo $PASSWORD | sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+echo $PASSWORD | sudo apt-get update
+echo $PASSWORD | sudo apt-get -y install docker-ce
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://8ad7943c.m.daocloud.io
-echo $PASSWORD | sudo sudo systemctl restart docker
+echo $PASSWORD | sudo systemctl restart docker
 echo "finish install docker-ce..."
 
 echo "begin install nvidia-docker:" 
@@ -38,7 +38,7 @@ sudo apt-get install nvidia-modprobe
 wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
 echo $PASSWORD | sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
 echo $PASSWORD | sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
-echo $PASSWORD | sudo sudo sed -i "s/-s \$SOCK_DIR/-s \$SOCK_DIR -l 0.0.0.0:3476/g" /lib/systemd/system/nvidia-docker.service
+echo $PASSWORD | sudo sed -i "s/-s \$SOCK_DIR/-s \$SOCK_DIR -l 0.0.0.0:3476/g" /lib/systemd/system/nvidia-docker.service
 
 echo "finish install nvidia-docker..." 
 
