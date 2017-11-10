@@ -18,7 +18,7 @@ echo "finish install nvidia-drivers..."
 
 
 echo "create seetaas account"
-echo $PASSWORD | sudo sudo useradd -m -p `openssl passwd -1 -salt 'seetatech'  seetatech` seetaas
+echo $PASSWORD | sudo useradd -m -p `openssl passwd -1 -salt 'seetatech'  seetatech` seetaas
 echo $PASSWORD | sudo mkdir /home/seetaas/install
 echo $PASSWORD | sudo chown -R seetaas.seetaas /home/seetaas/install
 
@@ -48,10 +48,10 @@ echo $PASSWORD | sudo service nvidia-docker status
 
 echo "begin install mesos:"
 echo $PASSWORD | sudo apt-get -y install build-essential python-dev python-boto libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev
-echo $PASSWORD | sudo apt-get install zlib1g-dev
+echo $PASSWORD | sudo apt-get install -y zlib1g-dev
 echo $PASSWORD | sudo apt-get install -y autoconf libtool
 
-wget -c ftp://192.168.1.186/pub/jdk-8u144-linux-x64.tar.gz
+wget -c ftp://192.168.1.107/pub/jdk-8u144-linux-x64.tar.gz
 echo $PASSWORD | sudo tar -zxvf jdk-8u144-linux-x64.tar.gz -C /usr/local
 echo $PASSWORD | sudo sh -c "echo export JAVA_HOME=/usr/local/jdk1.8.0_144 >> /etc/profile.d/java.sh"
 echo $PASSWORD | sudo sh -c "echo export JRE_HOME=/usr/local/jdk1.8.0_144/jre >> /etc/profile.d/java.sh"
@@ -59,7 +59,7 @@ echo $PASSWORD | sudo sh -c "echo export CLASSPATH=.:\"$\"JAVA_HOME/lib/dt.jar:\
 echo $PASSWORD | sudo sh -c "echo export PATH=\"$\"JAVA_HOME/bin:\"$\"PATH >> /etc/profile.d/java.sh"
 source /etc/profile
 
-wget -c ftp://120.25.103.102/pub/mesos-1.4.0.tar.gz
+wget -c ftp://192.168.1.107/pub/mesos-1.4.0.tar.gz
 
 tar zxvf mesos-1.4.0.tar.gz
 
